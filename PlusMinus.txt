@@ -1,0 +1,51 @@
+'use strict';
+
+process.stdin.resume();
+process.stdin.setEncoding('utf-8');
+
+let inputString = '';
+let currentLine = 0;
+
+process.stdin.on('data', inputStdin => {
+    inputString += inputStdin;
+});
+
+process.stdin.on('end', _ => {
+    inputString = inputString.replace(/\s*$/, '')
+        .split('\n')
+        .map(str => str.replace(/\s*$/, ''));
+
+    main();
+});
+
+function readLine() {
+    return inputString[currentLine++];
+}
+
+function plusMinus(arr) {
+    var pluscount = 0, minuscount = 0, zerocount = 0;
+    for (var i = 0; i < arr.length ; i++) {
+        if (arr[i] > 0)
+            pluscount++;
+        else if (arr[i] < 0)
+            minuscount++;
+        else
+            zerocount++;
+    }
+    var positiveOccurrence = (pluscount / arr.length).toFixed(5);
+    var negativeOccurrence = (minuscount / arr.length).toFixed(5);
+    var zeroOccurrence = (zerocount / arr.length).toFixed(5);
+    
+    console.log(positiveOccurrence);
+    console.log(negativeOccurrence);
+    console.log(zeroOccurrence);
+
+}
+
+function main() {
+    const n = parseInt(readLine(), 10);
+
+    const arr = readLine().split(' ').map(arrTemp => parseInt(arrTemp, 10));
+
+    plusMinus(arr);
+}
